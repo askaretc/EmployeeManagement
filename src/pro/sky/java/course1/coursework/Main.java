@@ -4,6 +4,8 @@ public class Main {
     private static final Employee[] employees = new Employee[10];
 
     public static void main(String[] args) {
+
+        ////////// EASY LEVEL //////////
         Employee employee1 = new Employee("Jon Snow", 1, 70_000);
         Employee employee2 = new Employee("Rob Stark", 1, 64_000);
         Employee employee3 = new Employee("Sansa Stark", 2, 45_000);
@@ -26,8 +28,27 @@ public class Main {
         printAverageSalary();
         System.out.println("=========================================================================================");
         printAllEmployeesFullName();
+        System.out.println("=========================================================================================");
+        System.out.println("=========================================================================================");
+
+
+        ////////// MEDIUM LEVEL //////////
+        indexAllEmployeesSalary(5.55);
+        printAllEmployeesInformation();
+        System.out.println("=========================================================================================");
+        printEmployeeWithMaximalSalaryByDepartment(1);
+        printEmployeeWithMinimalSalaryByDepartment(1);
+        printTotalSalaryByDepartment(1);
+        printAverageSalaryByDepartment(1);
+        indexAllEmployeesSalaryByDepartment(1, 4.49);
+        printAllEmployeesInformationByDepartment(1);
+        System.out.println("=========================================================================================");
+        printEmployeesWithSalaryLessThanNumber(65_000);
+        printEmployeesWithSalaryGreaterThanNumber(65_000);
     }
 
+
+    ////////// EASY LEVEL //////////
     public static void addEmployee(Employee employee) {
         employees[getIndexOfFreeElement()] = employee;
     }
@@ -171,5 +192,167 @@ public class Main {
         }
         String result = sb.toString();
         System.out.print(result);
+    }
+
+
+    ////////// MEDIUM LEVEL //////////
+    public static void indexAllEmployeesSalary(double percent) {
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null) {
+                    double newSalaryUoToCents = (double) employee.getSalary() * (1 + percent / 100);
+                    int newSalaryWithoutCents = (int) newSalaryUoToCents;
+                    employee.setSalary(newSalaryWithoutCents);
+                }
+            }
+        }
+    }
+
+    public static void printEmployeeWithMaximalSalaryByDepartment(int department) {
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    if (employee.getSalary() == calculateMaximalSalaryByDepartment(department)) {
+                        System.out.println("Employee with maximal salary from the " + department + " department: " + employee);
+                    }
+                }
+            }
+        }
+    }
+
+    private static int calculateMaximalSalaryByDepartment(int department) {
+        int maximalSalary = 0;
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    if (employee.getSalary() > maximalSalary) {
+                        maximalSalary = employee.getSalary();
+                    }
+                }
+            }
+        }
+        return maximalSalary;
+    }
+
+    public static void printEmployeeWithMinimalSalaryByDepartment(int department) {
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    if (employee.getSalary() == calculateMinimalSalaryByDepartment(department)) {
+                        System.out.println("Employee with minimal salary from the " + department + " department: " + employee);
+                    }
+                }
+            }
+        }
+    }
+
+    private static int calculateMinimalSalaryByDepartment(int department) {
+        int minimalSalary = 0;
+        if (checkAllElementsIsNotNull()) {
+            for (int i = 0; i < employees.length; i++) {
+                if (i == 0) {
+                    minimalSalary = employees[i].getSalary();
+                }
+                if (employees[i] != null && employees[i].getDepartment() == department) {
+                    if (employees[i].getSalary() < minimalSalary) {
+                        minimalSalary = employees[i].getSalary();
+                    }
+                }
+            }
+        }
+        return minimalSalary;
+    }
+
+    public static void printTotalSalaryByDepartment(int department) {
+        if (checkAllElementsIsNotNull()) {
+            System.out.println("The total amount of all salaries for " + department + " department: " + calculateTotalSalaryByDepartment(department));
+        }
+    }
+
+    private static int calculateTotalSalaryByDepartment(int department) {
+        int totalSalary = 0;
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    totalSalary += employee.getSalary();
+                }
+            }
+        }
+        return totalSalary;
+    }
+
+    public static void printAverageSalaryByDepartment(int department) {
+        if (checkAllElementsIsNotNull()) {
+            System.out.printf("The average salary for %d department: %.2f\n", department, calculateAverageSalaryByDepartment(department));
+        }
+    }
+
+    private static double calculateAverageSalaryByDepartment(int department) {
+        double averageSalary;
+        int i = 0;
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    i++;
+                }
+            }
+        }
+        averageSalary = (double) calculateTotalSalaryByDepartment(department) / i;
+        return averageSalary;
+    }
+
+    public static void indexAllEmployeesSalaryByDepartment(int department, double percent) {
+        if (checkAllElementsIsNotNull()) {
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    double newSalaryUoToCents = (double) employee.getSalary() * (1 + percent / 100);
+                    int newSalaryWithoutCents = (int) newSalaryUoToCents;
+                    employee.setSalary(newSalaryWithoutCents);
+                }
+            }
+        }
+    }
+
+    public static void printAllEmployeesInformationByDepartment(int department) {
+        if (checkAllElementsIsNotNull()) {
+            System.out.println("All employees from the " + department + " department: ");
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == department) {
+                    System.out.println("id = " + employee.getId() + ", full name = " + employee.getFullName() + ", salary = " + employee.getSalary());
+                }
+            }
+        }
+    }
+
+    public static void printEmployeesWithSalaryLessThanNumber(int number) {
+        if (checkAllElementsIsNotNull()) {
+            System.out.println("Employees with a salary less than " + number + ": ");
+            int j = 0;
+            for (Employee employee : employees) {
+                if (employee != null && employee.getSalary() < number) {
+                    System.out.println("id = " + employee.getId() + ", full name = " + employee.getFullName() + ", salary = " + employee.getSalary());
+                    j++;
+                }
+            }
+            if (j == 0) {
+                System.out.println("Not Found");
+            }
+        }
+    }
+
+    public static void printEmployeesWithSalaryGreaterThanNumber(int number) {
+        if (checkAllElementsIsNotNull()) {
+            System.out.println("Employees with a salary greater than(or equal to) " + number + ": ");
+            int j = 0;
+            for (Employee employee : employees) {
+                if (employee != null && employee.getSalary() >= number) {
+                    System.out.println("id = " + employee.getId() + ", full name = " + employee.getFullName() + ", salary = " + employee.getSalary());
+                    j++;
+                }
+            }
+            if (j == 0) {
+                System.out.println("Not Found");
+            }
+        }
     }
 }

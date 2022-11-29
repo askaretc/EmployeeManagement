@@ -1,7 +1,7 @@
 package pro.sky.java.course1.coursework;
 
 public class Employee {
-    private static int idCounter;
+    private static int idCounter = 1;
     private final int id;
     private final String fullName;
     private int department;
@@ -14,8 +14,7 @@ public class Employee {
             this.department = department;
         }
         this.salary = salary;
-        id = idCounter;
-        idCounter++;
+        id = idCounter++;
     }
 
 
