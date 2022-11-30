@@ -1,5 +1,7 @@
 package pro.sky.java.course1.coursework;
 
+import java.util.Objects;
+
 public class Employee {
     private static int idCounter = 1;
     private final int id;
@@ -13,7 +15,9 @@ public class Employee {
         if (validateDepartmentArgument(department)) {
             this.department = department;
         }
-        this.salary = salary;
+        if (validateSalaryArgument(salary)) {
+            this.salary = salary;
+        }
         id = idCounter++;
     }
 
@@ -40,6 +44,13 @@ public class Employee {
         }
     }
 
+    public void setSalary(int salary) {
+        if (validateSalaryArgument(salary)) {
+            this.salary = salary;
+        }
+    }
+
+
     private boolean validateDepartmentArgument(int department) {
         if (department > 5 || department <= 0) {
             throw new IllegalArgumentException("Department should be in the range of [1-5].");
@@ -47,9 +58,13 @@ public class Employee {
         return true;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    private boolean validateSalaryArgument(int salary) {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary should be positive.");
+        }
+        return true;
     }
+
 
     @Override
     public String toString() {
@@ -57,5 +72,18 @@ public class Employee {
                 ", full name = " + fullName +
                 ", department = " + department +
                 ", salary = " + salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
