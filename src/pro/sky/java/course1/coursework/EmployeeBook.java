@@ -181,14 +181,8 @@ public class EmployeeBook {
     }
 
     private int calculateMinimalSalary() {
-        int minimalSalary = 0;
+        int minimalSalary = Integer.MAX_VALUE;
         if (checkAllElementsIsNotNull()) {
-            for (Employee employee : employees) {
-                if (employee != null) {
-                    minimalSalary = employee.getSalary();
-                    break;
-                }
-            }
             for (Employee employee : employees) {
                 if (employee != null) {
                     if (employee.getSalary() < minimalSalary) {
@@ -286,14 +280,8 @@ public class EmployeeBook {
     }
 
     private int calculateMinimalSalaryByDepartment(int department) {
-        int minimalSalary = 0;
+        int minimalSalary = Integer.MAX_VALUE;
         if (checkAllElementsIsNotNull()) {
-            for (Employee employee : employees) {
-                if (employee != null && employee.getDepartment() == department) {
-                    minimalSalary = employee.getSalary();
-                    break;
-                }
-            }
             for (Employee employee : employees) {
                 if (employee != null && employee.getDepartment() == department) {
                     if (employee.getSalary() < minimalSalary) {
