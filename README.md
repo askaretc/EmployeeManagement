@@ -1,2 +1,2 @@
-# EmployeeManagement
+# Employee management
 Coursework
