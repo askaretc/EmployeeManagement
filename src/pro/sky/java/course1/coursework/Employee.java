@@ -2,15 +2,7 @@ package pro.sky.java.course1.coursework;
 
 import java.util.Objects;
 
-/**
- * Employee is a "warehouse-class" that aggregating the employee's ID, full name, department and salary.
- * The class includes only properties and state.
- *
- * @author Askar Gizatullin
- * @version 1.0
- */
 public class Employee {
-
     private static int idCounter = 1;
     private final int id;
     private final String fullName;
@@ -18,14 +10,6 @@ public class Employee {
     private int salary;
 
 
-    /**
-     * Class constructor that creates an employee.
-     *
-     * @param fullName - full name of the employee.
-     * @param department - the employee's department number in the range of [1-5].
-     * @param salary - employee's salary in monetary units.
-     * @throws IllegalArgumentException if method has been passed an illegal or inappropriate argument.
-     */
     public Employee(String fullName, int department, int salary) {
         this.fullName = fullName;
         if (validateDepartmentArgument(department)) {
