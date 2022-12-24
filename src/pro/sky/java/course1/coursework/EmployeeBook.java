@@ -1,9 +1,21 @@
 package pro.sky.java.course1.coursework;
 
+/**
+ * EmployeeBook is a "utility-class" for working with Employee's class objects.
+ * The class contains a private final Employee[] array and methods for working with this array elements.
+ *
+ * @author Askar Gizatullin
+ * @version 1.0
+ */
 public class EmployeeBook {
     private final Employee[] employees;
 
 
+    /**
+     * Class constructor specifying number of array elements.
+     *
+     * @param employeesAmount - the number of employees that the array should contain.
+     */
     public EmployeeBook(int employeesAmount) {
         employees = new Employee[employeesAmount];
     }

@@ -1,7 +1,15 @@
 package pro.sky.java.course1.coursework;
 
+/**
+ * A program that check Employee and EmployeeBook classes workability.
+ *
+ * @author Askar Gizatullin
+ * @version 1.0
+ */
 public class Main {
+
     public static void main(String[] args) {
+
         EmployeeBook employeeBook = new EmployeeBook(10);
 
         employeeBook.addEmployee("Jon Snow", 1, 70_000);
