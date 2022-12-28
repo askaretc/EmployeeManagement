@@ -1,8 +1,6 @@
 package pro.sky.java.course1.coursework;
 
 /**
- * A program that check Employee and EmployeeBook classes workability.
- *
  * @author Askar Gizatullin
  * @version 1.0
  */
